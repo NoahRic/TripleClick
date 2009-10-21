@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="ms-pl.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
   <ItemGroup>

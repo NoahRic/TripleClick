@@ -143,7 +143,7 @@ namespace TripleClick
 
         Point RelativeToView(Point position)
         {
-            return new Point(position.X - _view.ViewportLeft, position.Y - _view.ViewportTop);
+            return new Point(position.X + _view.ViewportLeft, position.Y + _view.ViewportTop);
         }
 
         #endregion

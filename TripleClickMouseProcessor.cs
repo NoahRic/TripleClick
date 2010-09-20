@@ -3,18 +3,35 @@
  * 
  * Check out blogs.msdn.com/noahric for more information about the Visual Studio 2010 editor.
  */
+using System;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Utilities;
-using System;
-using Microsoft.VisualStudio.Text.Operations;
 using Microsoft.VisualStudio.Text.Formatting;
+using Microsoft.VisualStudio.Utilities;
 
 namespace TripleClick
 {
+    /// <summary>
+    /// Bug workaround for VS2010:
+    /// A fake mouse processor provider that forces word selection and drag drop to be in the correct order.
+    /// Without this, the ordering can get reversed by the TripleClickMouseProcessorProvider below.
+    /// </summary>
+    [Export(typeof(IMouseProcessorProvider))]
+    [Name("DragDropWordSelectionOrderingFix")]
+    [Order(Before = "WordSelection", After = "DragDrop")]
+    [ContentType("text")]
+    [TextViewRole(PredefinedTextViewRoles.Interactive)]
+    internal sealed class DragDropWordSelectionOrderingFix : IMouseProcessorProvider
+    {
+        public IMouseProcessor GetAssociatedProcessor(IWpfTextView wpfTextView)
+        {
+            return null;
+        }
+    }
+
     [Export(typeof(IMouseProcessorProvider))]
     [Name("TripleClick")]
     [Order(Before = "DragDrop")]

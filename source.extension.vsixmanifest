@@ -3,7 +3,7 @@
   <Identifier Id="TripleClick">
     <Name>Triple Click</Name>
     <Author>Noah Richards</Author>
-    <Version>2.0</Version>
+    <Version>2.1</Version>
     <Description xml:space="preserve">Makes triple click select an entire line.</Description>
     <Locale>1033</Locale>
     <MoreInfoUrl>http://blogs.msdn.com/noahric</MoreInfoUrl>
